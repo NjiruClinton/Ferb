@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/Ferb/static/css/main.4d2c84be.css",
+    "main.js": "/Ferb/static/js/main.d1ef85d1.js",
+    "static/js/787.5e9e04c3.chunk.js": "/Ferb/static/js/787.5e9e04c3.chunk.js",
+    "static/media/backg.jpg": "/Ferb/static/media/backg.4e0b354c91436da0d337.jpg",
+    "index.html": "/Ferb/index.html",
+    "main.4d2c84be.css.map": "/Ferb/static/css/main.4d2c84be.css.map",
+    "main.d1ef85d1.js.map": "/Ferb/static/js/main.d1ef85d1.js.map",
+    "787.5e9e04c3.chunk.js.map": "/Ferb/static/js/787.5e9e04c3.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.4d2c84be.css",
+    "static/js/main.d1ef85d1.js"
+  ]
+}
