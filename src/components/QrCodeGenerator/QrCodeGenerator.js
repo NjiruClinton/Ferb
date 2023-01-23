@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import QRCode from 'qrcode.react';
 import html2canvas from 'html2canvas';
 
@@ -42,14 +42,8 @@ navigator.clipboard.readText().then(text => {
         });
     }
 
-    
-
-
-
-
-
   return (
-    <div className='grid h-screen place-items-center'>
+    <div className='grid h-screen place-items-center '>
         <h1 className='font-bold text-5xl text-sky-400/100 animate-bounce'>QRs</h1>
       <div>
      
@@ -73,11 +67,31 @@ bg-white
   <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" onClick={capture}/>
 </svg>
 
+{/* tailwind footer */}
+
+
+<footer class="p-4 bg-white rounded-lg shadow md:flex md:items-center md:justify-between md:p-6 dark:bg-gray-800">
+    <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2023 <a href="https://njiruclinton.netlify.app/" class="hover:underline">njiruclinton</a>. All Rights Reserved.
+    </span>
+    <ul class="flex flex-wrap items-center mt-3 text-sm text-gray-500 dark:text-gray-400 sm:mt-0 ml-4">
+        <li>
+            <a href="https://maingrainarticles.netlify.app/" class="mr-4 hover:underline md:mr-6 ">About</a>
+        </li>
+        <li>
+            <a href="https://njiruclinton.netlify.app/" class="mr-4 hover:underline md:mr-6">Privacy Policy</a>
+        </li>
+        <li>
+            <a href="https://njiruclinton.netlify.app/" class="mr-4 hover:underline md:mr-6">Licensing</a>
+        </li>
+        <li>
+            <a href="https://njiruclinton.netlify.app/" class="hover:underline">Contact</a>
+        </li>
+    </ul>
+</footer>
+
+
     </div>
   );
 }
 
 export default QRCodeGenerator;
-
-
-
