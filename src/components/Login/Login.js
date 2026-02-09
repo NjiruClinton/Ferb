@@ -77,13 +77,13 @@ function Login() {
             </div>
           </form>
 
-          <div className="mt-6">
-            <div className="text-sm text-gray-600">
-              <p>Default credentials:</p>
-              <p>Username: admin</p>
-              <p>Password: qr2024</p>
-            </div>
-          </div>
+          {/*<div className="mt-6">*/}
+          {/*  <div className="text-sm text-gray-600">*/}
+          {/*    <p>Default credentials:</p>*/}
+          {/*    <p>Username: admin</p>*/}
+          {/*    <p>Password: qr2024</p>*/}
+          {/*  </div>*/}
+          {/*</div>*/}
         </div>
       </div>
     </div>
