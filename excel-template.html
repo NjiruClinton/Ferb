@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excel Template for QR Bulk Generation</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        .download-btn { background-color: #4CAF50; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <h1>Excel Template for QR Code Bulk Generation</h1>
+    <p>Use this format for your Excel file when uploading to the QR Manager:</p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Ticket Number</th>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>T001</td>
+                <td>John Smith</td>
+                <td>555-0123</td>
+                <td>john@email.com</td>
+            </tr>
+            <tr>
+                <td>T002</td>
+                <td>Jane Doe</td>
+                <td>555-0456</td>
+                <td>jane@email.com</td>
+            </tr>
+            <tr>
+                <td>T003</td>
+                <td>Bob Johnson</td>
+                <td>555-0789</td>
+                <td>bob@email.com</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>Notes:</h3>
+    <ul>
+        <li><strong>Required:</strong> Ticket Number, Name</li>
+        <li><strong>Optional:</strong> Phone, Email</li>
+        <li>Save your file as .xlsx format</li>
+        <li>The first row should contain headers</li>
+    </ul>
+
+    <script>
+        // Create downloadable Excel template
+        function downloadTemplate() {
+            const data = [
+                ['Ticket Number', 'Name', 'Phone', 'Email'],
+                ['T001', 'John Smith', '555-0123', 'john@email.com'],
+                ['T002', 'Jane Doe', '555-0456', 'jane@email.com'],
+                ['T003', 'Bob Johnson', '555-0789', 'bob@email.com']
+            ];
+
+            let csvContent = "data:text/csv;charset=utf-8,";
+            data.forEach(function(rowArray) {
+                let row = rowArray.join(",");
+                csvContent += row + "\r\n";
+            });
+
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", "qr-template.csv");
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    </script>
+
+    <button class="download-btn" onclick="downloadTemplate()">Download CSV Template</button>
+</body>
+</html>

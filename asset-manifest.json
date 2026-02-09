@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/Ferb/static/css/main.ccc9c25f.css",
-    "main.js": "/Ferb/static/js/main.be9c6b5c.js",
+    "main.css": "/Ferb/static/css/main.c4d2d4a0.css",
+    "main.js": "/Ferb/static/js/main.c75bf1ef.js",
     "static/js/787.5e9e04c3.chunk.js": "/Ferb/static/js/787.5e9e04c3.chunk.js",
     "static/media/backg.jpg": "/Ferb/static/media/backg.4e0b354c91436da0d337.jpg",
     "index.html": "/Ferb/index.html",
-    "main.ccc9c25f.css.map": "/Ferb/static/css/main.ccc9c25f.css.map",
-    "main.be9c6b5c.js.map": "/Ferb/static/js/main.be9c6b5c.js.map",
+    "main.c4d2d4a0.css.map": "/Ferb/static/css/main.c4d2d4a0.css.map",
+    "main.c75bf1ef.js.map": "/Ferb/static/js/main.c75bf1ef.js.map",
     "787.5e9e04c3.chunk.js.map": "/Ferb/static/js/787.5e9e04c3.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.ccc9c25f.css",
-    "static/js/main.be9c6b5c.js"
+    "static/css/main.c4d2d4a0.css",
+    "static/js/main.c75bf1ef.js"
   ]
 }
