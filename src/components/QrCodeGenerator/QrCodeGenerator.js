@@ -95,6 +95,30 @@ navigator.clipboard.readText().then(text => {
         }).catch(err => console.error('capture error', err))
     }
 
+  function downloadSvg(event) {
+    if (event && event.preventDefault) event.preventDefault()
+    const svgEl = document.querySelector('#qr-svg svg')
+    if (!svgEl) return
+
+    const clone = svgEl.cloneNode(true)
+    if (!clone.getAttribute('xmlns')) {
+      clone.setAttribute('xmlns', 'http://www.w3.org/2000/svg')
+    }
+    if (!clone.getAttribute('xmlns:xlink')) {
+      clone.setAttribute('xmlns:xlink', 'http://www.w3.org/1999/xlink')
+    }
+    const svgString = new XMLSerializer().serializeToString(clone)
+    const blob = new Blob(['<?xml version="1.0" standalone="no"?>\r\n', svgString], {
+      type: 'image/svg+xml;charset=utf-8',
+    })
+    const url = URL.createObjectURL(blob)
+    const link = document.createElement('a')
+    link.download = 'qr.svg'
+    link.href = url
+    link.click()
+    setTimeout(() => URL.revokeObjectURL(url), 1000)
+  }
+
   return (
     <div className='grid h-screen place-items-center '>
         <h1 className='font-bold text-5xl text-sky-400/100 animate-bounce'>QRs</h1>
@@ -116,6 +140,10 @@ bg-white
     <div id = "qr" >
       <QRCode value={inputText} size={256} />
 </div>
+    {/* Hidden SVG version used for SVG downloads */}
+    <div id="qr-svg" style={{ position: 'absolute', width: 0, height: 0, overflow: 'hidden' }}>
+      <QRCode value={inputText} size={256} renderAs="svg" />
+    </div>
 
       <div className="flex gap-3 mt-4">
         <button
@@ -141,6 +169,21 @@ bg-white
             <rect x="3" y="3" width="18" height="18" rx="3"/>
             <polyline points="8 12 12 16 16 12"/>
             <line x1="12" y1="16" x2="12" y2="8"/>
+          </svg>
+        </button>
+
+        <button
+          className="bg-purple-600 text-white p-2 rounded hover:bg-purple-700 flex items-center justify-center"
+          onClick={downloadSvg}
+          aria-label="Download SVG"
+          title="Download SVG"
+        >
+          <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M4 4h6v6H4z"/>
+            <path d="M14 4h6v6h-6z"/>
+            <path d="M4 14h6v6H4z"/>
+            <path d="M14 14h3v3h-3z"/>
+            <path d="M18 18h2v2h-2z"/>
           </svg>
         </button>
       </div>
