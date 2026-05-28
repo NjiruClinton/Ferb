@@ -142,6 +142,32 @@ function QRsPage() {
     }
   };
 
+  const downloadQRSvg = (item) => {
+    const svgEl = document.querySelector(`#qr-svg-${item.id} svg`);
+    if (!svgEl) return;
+
+    // Clone so we can safely add attributes without affecting the DOM
+    const clone = svgEl.cloneNode(true);
+    if (!clone.getAttribute('xmlns')) {
+      clone.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+    }
+    if (!clone.getAttribute('xmlns:xlink')) {
+      clone.setAttribute('xmlns:xlink', 'http://www.w3.org/1999/xlink');
+    }
+
+    const serializer = new XMLSerializer();
+    const svgString = serializer.serializeToString(clone);
+    const blob = new Blob(['<?xml version="1.0" standalone="no"?>\r\n', svgString], {
+      type: 'image/svg+xml;charset=utf-8',
+    });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.download = `qr-${item.ticketNumber}.svg`;
+    link.href = url;
+    link.click();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  };
+
   const downloadAllQRs = async () => {
     const filteredData = data.filter(item =>
       item.ticketNumber.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -236,6 +262,10 @@ function QRsPage() {
                   <div id={`qr-${item.id}`} className="flex justify-center mb-4">
                     <QRCode value={item.qrContent} size={200} />
                   </div>
+                  {/* Hidden SVG version for SVG downloads */}
+                  <div id={`qr-svg-${item.id}`} style={{ position: 'absolute', width: 0, height: 0, overflow: 'hidden' }}>
+                    <QRCode value={item.qrContent} size={200} renderAs="svg" />
+                  </div>
                   <div className="text-sm text-gray-600 mb-4">
                     <p><strong>Ticket:</strong> {item.ticketNumber}</p>
                     <p><strong>Name:</strong> {item.name}</p>
@@ -266,6 +296,19 @@ function QRsPage() {
                         <line x1="12" y1="16" x2="12" y2="8"/>
                       </svg>
                       Frame
+                    </button>
+                    <button
+                      onClick={() => downloadQRSvg(item)}
+                      className="bg-purple-600 text-white px-3 py-1 rounded text-sm hover:bg-purple-700 flex items-center"
+                      title="Download SVG"
+                    >
+                      <svg className="w-4 h-4 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                        <path d="M4 4h6v6H4z"/>
+                        <path d="M14 4h6v6h-6z"/>
+                        <path d="M4 14h6v6H4z"/>
+                        <path d="M14 14h3v3h-3zM18 18h2v2h-2z"/>
+                      </svg>
+                      SVG
                     </button>
                   </div>
                 </div>
